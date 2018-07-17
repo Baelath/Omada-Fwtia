@@ -5,22 +5,22 @@ using UnityEngine;
 public class Button : MonoBehaviour, IInteractable
 {
 
-    public Transform player;
-    public Animator anim;
+    public Transform player;                                                                    // player to check distance from...
+    public Animator anim;                                                                       // animator that plays the button animations...
     private bool isNear;
     private bool canInteract = true;
     public GUIStyle style;
-    public PuzzleOne left;
-    public PuzzleOne middle;
-    public PuzzleOne right;
-    public Door door;
-    private int pos1;
-    private int pos2;
-    private int pos3;
-    [Header("Puzzle Solution Settings")]
-    public int solution1;
-    public int solution2;
-    public int solution3;
+    public PuzzleOne left;                                                                      // First puzzle piece...
+    public PuzzleOne middle;                                                                    // Middle puzzle piece...
+    public PuzzleOne right;                                                                     // Last puzzle piece...
+    public Door door;                                                                           // Door controlled by the puzzle...
+    private int pos1;                                                                           // First puzzle piece current position...
+    private int pos2;                                                                           // Middle puzzle piece current position...
+    private int pos3;                                                                           // Last puzzle piece current position...
+    [Header("Puzzle Solution Settings")]                                                        
+    public int solution1;                                                                       // First piece solution... 
+    public int solution2;                                                                       // Middle piece solution...
+    public int solution3;                                                                       // Last piece solution... 
 
     private void Start()
     {
@@ -33,11 +33,11 @@ public class Button : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        anim.Play("ButtonPress", -1, 0f);
-        Debug.Log("Animation played!");
+        anim.Play("ButtonPress", -1, 0f);                                                       // Play the button animation and reset (so it can be played again)...
+        //Debug.Log("Animation played!");
     }
 
-    void OnGUI()
+    void OnGUI()                                                                                // Text to appear when player is in animation range...
     {
         if (isNear == true)
         {
@@ -46,7 +46,7 @@ public class Button : MonoBehaviour, IInteractable
         }
     }
 
-    IEnumerator WaitTime()                                                          // Wait 1 second between interactions (for the animations to play correctly)...                                    
+    IEnumerator WaitTime()                                                                      // Wait 1 second between interactions (for the animations to play correctly)...                                    
     {
         canInteract = false;
         yield return new WaitForSeconds(1);
@@ -76,7 +76,7 @@ public class Button : MonoBehaviour, IInteractable
         }
     }
 
-    public void CheckSolution(int pos1,int pos2,int pos3)
+    public void CheckSolution(int pos1,int pos2,int pos3)                                       // Check current puzzle positions against solution... Unlock door if solution is correct...
     {
 
         if (pos1 == solution1 & pos2 == solution2 & pos3 == solution3)

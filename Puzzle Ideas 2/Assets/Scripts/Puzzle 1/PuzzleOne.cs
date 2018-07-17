@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PuzzleOne : MonoBehaviour, IInteractable {
 
-    public Transform player;
-    public Animator anim;
-    private bool isNear;
-    private bool canInteract = true;
-    public GUIStyle style;
-    private int position = 1;
+    public Transform player;                                                                        // player to check interaction distance from...
+    public Animator anim;                                                                           // animator that plays the puzzle animations....
+    private bool isNear;                                                                             
+    private bool canInteract = true;                                                                 
+    public GUIStyle style;                                                                          // text style for text on screen....
+    private int position = 1;                                                                       // initial position of puzzle pieces...
 
     public void Interact()
     {
@@ -30,7 +30,7 @@ public class PuzzleOne : MonoBehaviour, IInteractable {
         }
     }
 
-    void OnGUI()
+    void OnGUI()                                                                    // Text to appear when player is in interaction range...
     {
         if (isNear == true)
         {
@@ -48,7 +48,7 @@ public class PuzzleOne : MonoBehaviour, IInteractable {
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position,player.position) < 1.4f)
+        if (Vector3.Distance(transform.position,player.position) < 1.4f)            // Check if player is close and able to interact....
         {
             isNear = true;
             if (Input.GetKeyDown(KeyCode.E) & canInteract == true)
